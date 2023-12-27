@@ -1,0 +1,67 @@
+.chrome-2-tabs {
+  display: flex;
+//   background-color: #efc0b8;
+  padding: 6px 6px 0 6px;
+  font-size: 14px;
+//   overflow: auto;
+  .tab-item {
+    position: relative;
+    /* padding: 10px 35px; */
+    margin: 0 -12px;
+    cursor: pointer;
+    /* transition: 0.2s; */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M100 100C44.772 100 0 55.228 0 0v100h100z' fill='%23F8EAE7'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 100c55.228 0 100-44.772 100-100v100H0z' fill='%23F8EAE7'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><rect rx='8' width='100%' height='100%' fill='%23F8EAE7'/></svg>");
+    -webkit-mask-size:
+      12px 12px,
+      12px 12px,
+      calc(100% - 24px) calc(100% + 12px);
+    -webkit-mask-position:
+      right bottom,
+      left bottom,
+      center top;
+    -webkit-mask-repeat: no-repeat;
+    word-break: keep-all;
+    height: 34px;
+    padding: 3px 35px 0;
+    box-sizing: border-box;
+  }
+  .tab-item:hover:not(.active) {
+    background: var(--color-background-mute); // #f2d0ca;
+    position: relative;
+    padding: 3px 35px 0;
+    margin: 0 -12px;
+    cursor: pointer;
+    /* transition: 0.2s; */
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><rect rx='8' width='100%' height='100%' fill='%23F8EAE7'/></svg>");
+    -webkit-mask-size: calc(100% - 30px) calc(100% - 6px);
+    -webkit-mask-position: center top;
+    -webkit-mask-repeat: no-repeat;
+    word-break: keep-all;
+    height: 34px;
+    box-sizing: border-box;
+  }
+  .tab-item.active {
+    background: var(--sf-primary-color-opacity1); // #f8eae7;
+    z-index: 1;
+  }
+
+  .tab-item + .tab-item::before {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 18px;
+    background-color: var(--el-color-primary); // #efe;
+    left: 12px;
+  }
+  .tab-item:hover + .tab-item::before,
+  .tab-item:hover::before,
+  .tab-item.active + .tab-item::before,
+  .tab-item.active::before {
+    width: 0;
+  }
+}
+.dark .chrome-1-tabs .tab-item.active {
+  background: var(--sf-primary-color-opacity2);
+}
