@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 // import { ref } from 'vue'
 import { useLayoutStore } from '@/stores/layout'
-import NavbarRight from '../components/NavbarRight.vue'
+import { NavbarRight } from '../components'
 
-const store = useLayoutStore()
+const layoutStore = useLayoutStore()
 </script>
 <script lang="ts">
 export default {
@@ -14,7 +14,7 @@ export default {
   <div class="classic-header">
     <div>
       <Transition name="fade-left">
-        <div class="logo-text" v-show="store.isCollapse">Shadowfiend</div>
+        <div class="logo-text" v-show="layoutStore.isCollapse">Shadowfiend</div>
       </Transition>
     </div>
     <NavbarRight />

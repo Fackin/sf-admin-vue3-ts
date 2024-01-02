@@ -1,0 +1,33 @@
+#app {
+  // * el-drawer 样式
+  .el-drawer {
+    border-radius: 8px;
+    &.ltr,
+    &.rtl {
+      height: calc(100% - 20px);
+      top: 10px;
+      bottom: 10px;
+    }
+    &.rtl {
+      right: 10px;
+    }
+    .el-drawer__header {
+      padding: 15px 20px 14px;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--el-border-color-lighter);
+
+      span {
+        font-size: 17px;
+        color: var(--el-text-color-primary) !important;
+      }
+    }
+
+    .el-drawer__footer {
+      border-top: 1px solid var(--el-border-color-lighter);
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+}

@@ -52,7 +52,7 @@
     content: '';
     width: 1px;
     height: 18px;
-    background-color: var(--el-color-primary); // #efe;
+    background-color: var(--sf-primary-color-opacity3); // var(--el-color-primary); // #efe;
     left: 12px;
   }
   .tab-item:hover + .tab-item::before,

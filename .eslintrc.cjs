@@ -15,9 +15,10 @@ module.exports = {
     'vue/no-unused-components': 'off',
     'vue/no-unused-vars': 'off',
     'vue/require-default-prop': 'off',
-    "vue/multi-word-component-names": ["error", {
-      "ignores": ["Layout", "Sidebar",]
-    }]
+    "vue/multi-word-component-names": "off",
+    // "vue/multi-word-component-names": ["error", {
+    //   "ignores": ["Layout", "Sidebar",]
+    // }]
   },
   overrides: [
     {

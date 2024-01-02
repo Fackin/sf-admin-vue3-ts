@@ -1,8 +1,10 @@
 import { createI18n } from 'vue-i18n'
 // import { useGlobalStore } from '@/stores/global'
 
-import enLocal from './demo/en'
-import zhCnLocal from './demo/zh-cn'
+import enDemoLocal from './demo/en'
+import zhCnDemoLocal from './demo/zh-cn'
+import enLocal from './en'
+import zhCnLocal from './zh-cn'
 
 // const globalStore = useGlobalStore()
 const currentLanguage = navigator.language.replace(/-(\S*)/, '')
@@ -10,10 +12,12 @@ const currentLanguage = navigator.language.replace(/-(\S*)/, '')
 
 const messages = {
     en: {
-      ...enLocal
+      ...enLocal,
+      ...enDemoLocal
     },
     'zh-cn': {
-      ...zhCnLocal
+      ...zhCnLocal,
+      ...zhCnDemoLocal
     }
 }
 const i18n = createI18n({

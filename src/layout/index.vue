@@ -1,7 +1,7 @@
 <script lang="ts">
 import Sidebar from './classic/Sidebar.vue'
 import ClassicHeader from './classic/Header.vue'
-import TagsBar from './components/TagsBar.vue'
+import { TagsBar, SettingDrawer } from './components'
 
 export default {
   name: 'Layout',
@@ -9,6 +9,7 @@ export default {
     Sidebar,
     ClassicHeader,
     TagsBar,
+    SettingDrawer,
   }
 }
 </script>
@@ -35,6 +36,7 @@ const mainRef = ref(null)
             <footer>footer</footer>
         </main>
     </div>
+    <SettingDrawer />
 </template>
 <style scoped>
 .layout {

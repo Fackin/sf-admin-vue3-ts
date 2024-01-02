@@ -7,11 +7,12 @@ import router from './router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import '@/assets/styles/element/variables.scss'
 import 'element-plus/dist/index.css'
-// import "@/styles/index.scss";
+import "@/styles/index.scss";
 import "uno.css";
 import SvgIcon from '@/components/SvgIcon.vue'
 import pinia from './stores'
 import i18n from './lang'
+import '@/router/initRouter'
 
 
 const app = createApp(App)

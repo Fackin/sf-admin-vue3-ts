@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { FullScreen } from '@element-plus/icons-vue'
 // import { ref } from 'vue'
-import { toggleFullscreen } from '../composables/index'
-import TagsView from './tagsView/index.vue'
+import { toggleFullscreen } from '../../composables/index'
+import TagsView from './TagsView.vue'
 
 defineOptions({ name: 'TagsBar' })
 const props = defineProps(['el'])

@@ -1,8 +1,7 @@
 <script setup lang="ts" name="SvgIcon">
     import { computed } from 'vue';
     import { Icon } from '@iconify/vue';
-
-    export type IconType = "ep" | "ify" | "svg";
+    import type { IconType } from './types';
 
     interface Props {
         name: string,

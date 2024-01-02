@@ -1,6 +1,7 @@
-import { ref, watch } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 import ColorUnit from '@/util/ColorUnit'
+import type { ILayoutBtnConfig } from './types'
 
 const DEFAULT_PRIMARY = '#409eff'
 
@@ -8,6 +9,13 @@ export const useSettingStore = defineStore('setting', () => {
   const themeConfig = ref({
     primary: DEFAULT_PRIMARY,
     isDark: false,
+  })
+  const layoutBtnConfig: Ref<ILayoutBtnConfig> = ref({
+    search: true,
+    fullScreen: true,
+    messageBox: true,
+    globalLanguage: true,
+    nightTheme: true,
   })
 
   watch(
@@ -83,11 +91,19 @@ export const useSettingStore = defineStore('setting', () => {
     });
   }
 
+  const setLayoutBtnConfig = (val: ILayoutBtnConfig) => {
+    layoutBtnConfig.value = {
+      ...layoutBtnConfig.value,
+      ...val,
+    }
+  }
   return {
     themeConfig,
     setThemeColor,
     setThemePrimaryColor,
     setThemeConfig,
+    layoutBtnConfig,
+    setLayoutBtnConfig,
   }
 },
   {
