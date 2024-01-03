@@ -56,6 +56,7 @@ const mainRef = ref(null)
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
 }
 
 
@@ -76,7 +77,7 @@ const mainRef = ref(null)
     height: calc(100vh - 128px);
 }
 .global-header, .global-tab {
-    position: relative;
+    /* position: relative; */
     box-shadow: 0 1px 2px #00152914;
 }
 

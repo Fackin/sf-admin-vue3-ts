@@ -21,13 +21,24 @@ export const useAuthStore = defineStore('auth', () => {
     }
     // 删除tags
     const removeTagsMenus = (val: RouteRecordRaw) => {
+        const index = tagsMenus.value.findIndex(item => item.path === val.path)
         tagsMenus.value = tagsMenus.value.filter(item => item.path !== val.path)
+        return index - 1
     }
 
+    // 删除其他tags
+     const removeOtherTagsMenus = (val: RouteRecordRaw) => {
+        tagsMenus.value = tagsMenus.value.filter(item => item.path === val.path)
+     }
+
+     // 删除所有tags
+      const removeAllTagsMenus = () => {
+         tagsMenus.value = []
+      }
     /** 当前 tag */
     // const curentTag: Ref<RouteRecordRaw | null> = ref(null)
 
-    return { authMenus, tagsMenus, addTagsMenus, removeTagsMenus }
+    return { authMenus, tagsMenus, addTagsMenus, removeTagsMenus, removeOtherTagsMenus, removeAllTagsMenus }
 }, {
     persist: true
   })

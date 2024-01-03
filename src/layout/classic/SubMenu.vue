@@ -31,7 +31,7 @@ const authStore = useAuthStore()
 const router = useRouter()
 const handleClickMenu = (item: RouteRecordRaw) => {
   // 跳转外部链接
-  // if (isExternal(path)) return window.open(path, '_blank')
+  if (isExternal(item.path)) return (window as any).open(item.path, '_blank')
   authStore.addTagsMenus(item)
   router.push(item.path)
 }
