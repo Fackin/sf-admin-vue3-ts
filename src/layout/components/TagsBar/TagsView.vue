@@ -1,7 +1,7 @@
 <script setup lang="ts" name="TagsView">
-import { ref, getCurrentInstance, watch } from 'vue'
+import { ref, getCurrentInstance, watch, nextTick } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { type RouteRecordRaw, useRouter, useRoute} from 'vue-router'
+import { type RouteRecordRaw, useRouter, useRoute, RouterLink} from 'vue-router'
 
 defineOptions({ name: 'TagsView' })
 
@@ -283,7 +283,6 @@ const selectedTag = ref<RouteRecordRaw>()
 const instance = getCurrentInstance()
 
 const openMenu = (tag: RouteRecordRaw, e: _MouseEvent) => {
-  console.log(tag, e)
   const menuMinWidth = 105
   // 当前组件距离浏览左端的距离
   const offsetLeft = instance!.proxy!.$el.getBoundingClientRect().left
@@ -310,6 +309,12 @@ watch(menuVisible, (value) => {
   value ? document.body.addEventListener('click', closeMenu) : document.body.removeEventListener('click', closeMenu)
 })
 
+watch(route, (val) => {
+  console.log({...val})
+  authStore.addTagsMenus({...val} as unknown as RouteRecordRaw)
+  nextTick(moveTo)
+})
+
 
 // 关闭页签
 const closeTag = (val: RouteRecordRaw | undefined) => {
@@ -334,27 +339,96 @@ const closeAllTag = () => {
   router.push('/admin/home')
 }
 
+
+// ---------  滚动  ----------
+const scrollbarRef = ref()
+const scrollbarContentRef = ref()
+const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
+
+// 每次滚动距离
+const translateDistance = 400
+// 当前滚动条距离左侧
+let currentScrollLeft = 0
+
+// 滚动条 和 内容的宽度
+const useWidth = () => {
+  // 可滚动内容的宽度
+  const scrollbarContentWidth = scrollbarContentRef.value.clientWidth
+  // 滚动可视区宽度
+  const scrollbarWidth = scrollbarRef.value.wrapRef.clientWidth
+  // 剩余可滚动宽度
+  const lastDistance = scrollbarContentWidth - scrollbarWidth - currentScrollLeft
+
+  return { scrollbarContentWidth, scrollbarWidth, lastDistance }
+}
+
+// 滚动
+const scroll = ({ scrollLeft }: { scrollLeft: number}) => {
+  currentScrollLeft = scrollLeft
+}
+// 左右滚动
+const scrollTo = (direction: 'left' | 'right', distance: number = translateDistance) => {
+  const { scrollbarContentWidth, scrollbarWidth, lastDistance } = useWidth()
+  // 没有横向滚动条 
+  if (scrollbarContentWidth < scrollbarWidth) return
+  let scrollLeft = 0
+  if (direction === 'left') {
+    scrollLeft = Math.max(0, currentScrollLeft - distance)
+  } else {
+    scrollLeft = Math.min(currentScrollLeft + distance, currentScrollLeft + lastDistance)
+  }
+  scrollbarRef.value!.setScrollLeft(scrollLeft)
+}
+
+const moveTo = () => {
+  for (const tag of tagRefs.value) {
+    //@ts-ignore
+    if (route.path === tag.$props.to.path) {
+      //@ts-ignore
+      const el: HTMLElement = tag.$el
+      const offsetWidth = el.offsetWidth
+      const offsetLeft = el.offsetLeft
+      const { scrollbarWidth } = useWidth()
+      // 当前 tag 在可视区域左边时
+      if (offsetLeft < currentScrollLeft) {
+        const distance = currentScrollLeft - offsetLeft
+        scrollTo("left", distance)
+        return
+      }
+      // 当前 tag 在可视区域右边时
+      const width = scrollbarWidth + currentScrollLeft - offsetWidth
+      if (offsetLeft > width) {
+        const distance = offsetLeft - width
+        scrollTo("right", distance)
+        return
+      }
+    }
+  }
+}
 </script>
 
 <template>
   <div class="tags-view-container">
-    <el-link icon="DArrowLeft" :underline="false" class="el-tabs__nav-prev el-tabs__btn"></el-link>
-    <el-scrollbar class="tags-view-wrapper" wrap-class="scrollbar-wrap" view-class="scrollbar-view">
-      <div class="chrome-2-tabs">
-        <a
+    <el-link icon="DArrowLeft" :underline="false" class="el-tabs__nav-prev el-tabs__btn" @click="scrollTo('left')"></el-link>
+    <el-scrollbar ref="scrollbarRef" class="tags-view-wrapper" wrap-class="scrollbar-wrap" view-class="scrollbar-view" @scroll="scroll" >
+      <div ref="scrollbarContentRef" class="chrome-2-tabs">
+        <router-link
           v-for="item in authStore.tagsMenus"
           :key="item.path"
+          ref="tagRefs"
           class="scrollbar-item tab-item"
           :class="{ active: isActive(item) }"
+          :to="{ path: item.path }"
           @click="handleClickMenu(item)"
           @contextmenu.prevent="openMenu(item, $event)"
         >
+          <svg-icon style="margin-right: 4px;" size="16" v-if="item.meta?.icon" :fullName="item.meta.icon" />
           <span>{{ item.name }}</span>
           <el-icon class="tab-close" :size="12" @click.prevent.stop="closeTag(item)"><Close /></el-icon>
-      </a>
+      </router-link>
       </div>
     </el-scrollbar>
-    <el-link icon="DArrowRight" :underline="false" class="el-tabs__nav-next el-tabs__btn"></el-link>
+    <el-link icon="DArrowRight" :underline="false" class="el-tabs__nav-next el-tabs__btn" @click="scrollTo('right')"></el-link>
     <ul v-show="menuVisible" class="context-menu" :style="{left: `${menuLeft}px`, top: `${menuTop}px`}">
       <li>刷新</li>
       <li @click="closeTag(selectedTag)">关闭</li>
@@ -377,10 +451,10 @@ const closeAllTag = () => {
     flex: 1;
     // overflow-x: auto;
   }
-  .scrollbar-view::-webkit-scrollbar {
+  .scrollbar-wrap::-webkit-scrollbar {
     width: 2px;
   }
-  .scrollbar-view::-webkit-scrollbar-button{
+  .scrollbar-wrap::-webkit-scrollbar-button{
     background-color: pink;
     border-radius: 2px;
     width: 2px;

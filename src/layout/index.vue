@@ -30,8 +30,11 @@ const mainRef = ref(null)
             <main>
                 <TagsBar class="global-tab" :el="mainRef"/>
                 <div ref="mainRef" class="app-main flex-grow bg-#f6f9f8 dark:bg-#101014 transition duration-300 ease-in-out">
-                    <router-view></router-view>
+                    <div class="app-scrollbar h-full w-full bg-#ffffff dark:bg-#181818">
+                        <router-view></router-view>
+                    </div>
                 </div>
+                <el-backtop target=".app-main" />
             </main>
             <footer>footer</footer>
         </main>

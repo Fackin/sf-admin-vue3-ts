@@ -12,7 +12,10 @@ export const useAuthStore = defineStore('auth', () => {
 
     // 新增tags
     const addTagsMenus = (val: RouteRecordRaw) => {
+
         const index = tagsMenus.value.findIndex(item => item.path === val.path)
+
+        console.log(index, {...tagsMenus.value}, {...val})
         if (index !== -1) {
             //TODO
         } else {

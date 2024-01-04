@@ -10,6 +10,7 @@ declare module 'vue' {
     CalendarSample: typeof import('./src/components/modules/CalendarSample.vue')['default']
     ColorConverter: typeof import('./src/components/modules/ColorConverter.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckboxButton: typeof import('element-plus/es')['ElCheckboxButton']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
