@@ -25,13 +25,13 @@
     -webkit-mask-repeat: no-repeat;
     word-break: keep-all;
     height: 34px;
-    padding: 3px 35px 0;
+    padding: 3px 28px 0;
     box-sizing: border-box;
   }
   .tab-item:hover:not(.active) {
     background: var(--color-background-mute); // #f2d0ca;
     position: relative;
-    padding: 3px 35px 0;
+    padding: 3px 28px 0;
     margin: 0 -12px;
     cursor: pointer;
     /* transition: 0.2s; */
