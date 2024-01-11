@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // import { ref } from 'vue'
 import { useLayoutStore } from '@/stores/layout'
-import { NavbarRight } from '../components'
+import { NavbarRight, Breadcrumb } from '../components'
 
 const layoutStore = useLayoutStore()
 </script>
@@ -12,10 +12,16 @@ export default {
 </script>
 <template>
   <div class="classic-header">
-    <div>
+    <div class="flex flex-items-center color-white">
       <Transition name="fade-left">
-        <div class="logo-text" v-show="layoutStore.isCollapse">Shadowfiend</div>
+        <div class="logo-text flex flex-items-center" v-show="layoutStore.isCollapse">
+          Shadowfiend 
+          <el-divider style="border-color: #fff" direction="vertical" />
+        </div>
       </Transition>
+      <div class="overflow-box">
+        <Breadcrumb />
+      </div>
     </div>
     <NavbarRight />
   </div>
@@ -24,7 +30,7 @@ export default {
 .classic-header {
   // width: 100%;
   height: 64px;
-  background-color: #545c64;
+  background-color: #060d37;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -32,7 +38,6 @@ export default {
   padding-left: 8px;
   // padding-right: 10px;
 }
-
 
 .logo-text {
   font-size: 22px;
@@ -59,4 +64,7 @@ export default {
   opacity: 0;
 }
 
+.overflow-box {
+  overflow-x: auto;
+}
 </style>

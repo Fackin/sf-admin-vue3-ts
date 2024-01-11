@@ -50,7 +50,7 @@ export default {
       text-color="#fff" -->
     <el-menu
       :default-active="activeMenu"
-      background-color="#545c64"
+      background-color="#060d37"
       text-color="#fff"
       :collapse="isCollapse"
       @open="handleOpen"
@@ -78,7 +78,7 @@ export default {
   // width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: #545c64;
+  background-color: #060d37;
   // overflow: auto;
   display: flex;
   flex-direction: column;
@@ -115,12 +115,12 @@ export default {
 //   height: 40px;
 //   line-height: 40px;
 // }
-.classic-sidebar {
-  :deep(.el-sub-menu__title) {
-   height: 40px;
-   line-height: 40px;
-  }
-}
+// .classic-sidebar {
+//   :deep(.el-sub-menu__title) {
+  //  height: 40px;
+  //  line-height: 40px;
+//   }
+// }
 .collapse-icon-wrapper {
   text-align: right;
   padding: 22px;

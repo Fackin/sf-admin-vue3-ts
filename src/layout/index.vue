@@ -3,6 +3,7 @@ import Sidebar from './classic/Sidebar.vue'
 import ClassicHeader from './classic/Header.vue'
 import { TagsBar, SettingDrawer } from './components'
 import { FOOTER_CONTENT } from '@/config/index'
+import MainFullScreen from './components/TagsBar/FullScreen.vue'
 
 export default {
   name: 'Layout',
@@ -11,12 +12,15 @@ export default {
     ClassicHeader,
     TagsBar,
     SettingDrawer,
+    MainFullScreen,
   }
 }
 </script>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const mainRef = ref(null)
+import { toggleFullscreen } from './composables/index'
+const mainRef = ref()
+const { isFullscreen } = toggleFullscreen(mainRef)
 </script>
 <template>
     <div class="layout">
@@ -29,8 +33,11 @@ const mainRef = ref(null)
             </header>
 
             <main>
-                <TagsBar class="global-tab" :el="mainRef"/>
+                <TagsBar v-if="mainRef" class="global-tab" :el="mainRef"/>
                 <div ref="mainRef" class="app-main flex-grow bg-#f6f9f8 dark:bg-#101014 transition duration-300 ease-in-out">
+                    <div v-if="isFullscreen" class="fullscreen" >
+                        <MainFullScreen :el="mainRef"/>
+                    </div>
                     <div class="app-scrollbar h-full w-full bg-#ffffff dark:bg-#181818">
                         <router-view></router-view>
                         <div style="height: 60px;"></div>
@@ -99,4 +106,9 @@ const mainRef = ref(null)
     padding: 7px;
 }
 
+.fullscreen {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
 </style>

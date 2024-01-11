@@ -41,14 +41,14 @@ const handleClickMenu = (item: RouteRecordRaw) => {
   <template v-if="theOnlyOneChild && !theOnlyOneChild.children">
     <el-menu-item :index="theOnlyOneChild.path" @click="handleClickMenu(theOnlyOneChild)">
       <!-- <el-icon><document /></el-icon> -->
-      <svg-icon v-if="theOnlyOneChild.meta?.icon" :fullName="theOnlyOneChild.meta.icon" />
+      <svg-icon v-if="theOnlyOneChild.meta?.icon" :fullName="theOnlyOneChild.meta.icon" size="16" />
       <span>{{ theOnlyOneChild.name }}</span>
     </el-menu-item>
   </template>
   <el-sub-menu v-else :index="props.item.path">
     <template #title>
       <!-- <el-icon><location /></el-icon> -->
-      <svg-icon v-if="props.item.meta?.icon" :fullName="props.item.meta.icon" />
+      <svg-icon v-if="props.item.meta?.icon" :fullName="props.item.meta.icon" size="16"/>
       <span>{{ props.item.name }}</span>
     </template>
     <template v-if="props.item.children">

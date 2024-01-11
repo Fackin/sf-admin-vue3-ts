@@ -4,7 +4,8 @@ import { menus } from "./menus-data"
 import type { RouteRecordRaw } from "vue-router"
 
 export const useAuthStore = defineStore('auth', () => {
-    const authMenus = ref(menus)
+    // const authMenus = ref(menus)
+    const authMenus = menus
 
     /** 打开的菜单 tags 展示 */
     // tags 数组

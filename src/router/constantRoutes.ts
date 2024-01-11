@@ -109,6 +109,15 @@ export const staticRoutes: RouteRecordRaw[] = [
                             iconType: 'ep',
                         }
                     },
+                    {
+                        path: '/admin/demo/swiper-banner',
+                        name: 'DemoSwiperBanner',
+                        component: () => import('@/views/admin/demo/DemoSwiperBanner.vue'),
+                        meta: {
+                            icon: 'House@ep',
+                            iconType: 'ep',
+                        }
+                    },
 
                 ]
             },

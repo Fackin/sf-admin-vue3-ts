@@ -9,7 +9,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/dist/index.css'
 import "@/styles/index.scss";
 import "uno.css";
-import SvgIcon from '@/components/SvgIcon.vue'
+import globalComponents from '@/components/global'
 import pinia from './stores'
 import i18n from './lang'
 import '@/router/initRouter'
@@ -19,7 +19,7 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
-app.component('svg-icon', SvgIcon)
+app.use(globalComponents)
 
 app.use(pinia)
 app.use(router)

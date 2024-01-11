@@ -24,3 +24,8 @@ body {
 //   background-color: var(--ep-color-primary-light-9);
 //   color: var(--ep-color-primary);
 // }
+menu, ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

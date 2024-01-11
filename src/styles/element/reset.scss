@@ -30,4 +30,22 @@
       font-size: 14px;
     }
   }
+
+
+  // 菜单
+  .el-sub-menu.is-active,
+  .el-sub-menu.is-active .el-sub-menu__title:hover,
+  .el-menu-item.is-active {
+    background-color: var(--el-menu-hover-bg-color);
+    position: relative;
+    &:before {
+      content: '';
+      width: 2px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--el-menu-active-color);
+    }
+  }
 }
