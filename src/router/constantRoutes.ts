@@ -118,7 +118,46 @@ export const staticRoutes: RouteRecordRaw[] = [
                             iconType: 'ep',
                         }
                     },
+                    {
+                        path: '/admin/demo/box-shadow',
+                        name: 'DemoBoxShadow',
+                        component: () => import('@/views/admin/demo/DemoBoxShadow.vue'),
+                        meta: {
+                            icon: 'House@ep',
+                            iconType: 'ep',
+                        }
+                    },
 
+                ]
+            },
+            {
+                path: '/admin/css-demo',
+                name: 'cssDemo',
+                redirect: '/admin/cssDemo/webpackLogo',
+                meta: {
+                    icon: 'Guide@ep',
+                    iconType: 'ep',
+                },
+                children: [
+                    {
+                        path: '/admin/cssDemo/webpackLogo',
+                        name: 'WebpackLogo',
+                        component: () => import('../views/admin/cssDemo/webpackLogo/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+                    {
+                        path: '/admin/cssDemo/colorLoading',
+                        name: 'colorLoading',
+                        component: () => import('../views/admin/cssDemo/colorLoading/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+        
                 ]
             },
             {
