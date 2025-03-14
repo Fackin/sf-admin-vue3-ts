@@ -17,6 +17,7 @@ import HomeLayout from '../components/layouts/HomeLayout.vue'
 						<RouterLink to="/">Home</RouterLink>
 						<RouterLink to="/about">About</RouterLink>
 						<RouterLink to="/counter">Counter</RouterLink>
+						<RouterLink to="/passesWCAG">Passes WCAG</RouterLink>
 						<RouterLink to="/login">Login</RouterLink>
 					</nav>
 				</div>

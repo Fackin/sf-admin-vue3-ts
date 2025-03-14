@@ -1,5 +1,5 @@
 <script setup lang="ts" name="TagsView">
-import { ref, getCurrentInstance, watch, nextTick } from 'vue'
+import { ref, getCurrentInstance, watch, nextTick, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { type RouteRecordRaw, useRouter, useRoute, RouterLink} from 'vue-router'
 
@@ -309,10 +309,15 @@ watch(menuVisible, (value) => {
   value ? document.body.addEventListener('click', closeMenu) : document.body.removeEventListener('click', closeMenu)
 })
 
+onMounted(() => {
+  moveTo()
+})
+
 watch(route, (val) => {
   console.log({...val})
   authStore.addTagsMenus({...val} as unknown as RouteRecordRaw)
   nextTick(moveTo)
+  // moveTo()
 })
 
 
@@ -381,6 +386,7 @@ const scrollTo = (direction: 'left' | 'right', distance: number = translateDista
 }
 
 const moveTo = () => {
+  console.log('0000999998888')
   for (const tag of tagRefs.value) {
     //@ts-ignore
     if (route.path === tag.$props.to.path) {
@@ -389,6 +395,7 @@ const moveTo = () => {
       const offsetWidth = el.offsetWidth
       const offsetLeft = el.offsetLeft
       const { scrollbarWidth } = useWidth()
+  console.log(scrollbarWidth)
       // 当前 tag 在可视区域左边时
       if (offsetLeft < currentScrollLeft) {
         const distance = currentScrollLeft - offsetLeft

@@ -75,4 +75,16 @@ export default defineConfig({
     // svg 引入
     createSvg('./src/icons/svg/')
   ],
+  server: {
+    port: 5108,
+    host: '0.0.0.0',
+    proxy: {
+      '/v1': {
+        // target: 'http://financecheck-dev.ccit.com', // 代理地址
+        target: 'http://172.16.35.54:8081', // 代理地址
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/dev/, '')
+      }
+    }
+  }
 })

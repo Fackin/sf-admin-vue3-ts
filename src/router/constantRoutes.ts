@@ -34,6 +34,11 @@ export const staticRoutes: RouteRecordRaw[] = [
                 // which is lazy-loaded when the route is visited.
                 component: () => import('../views/CounterView.vue')
             },
+            {
+                path: '/passesWCAG',
+                name: 'passes WCAG',
+                component: () => import('../views/PassesWCAG.vue')
+            },
         ]
     },
     // {
@@ -152,6 +157,42 @@ export const staticRoutes: RouteRecordRaw[] = [
                         path: '/admin/cssDemo/colorLoading',
                         name: 'colorLoading',
                         component: () => import('../views/admin/cssDemo/colorLoading/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+                    {
+                        path: '/admin/cssDemo/demoLoading',
+                        name: 'demoLoading',
+                        component: () => import('../views/admin/cssDemo/demoLoading/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+                    {
+                        path: '/admin/cssDemo/glitchClock',
+                        name: 'glitchClock',
+                        component: () => import('../views/admin/cssDemo/glitchClock/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+                    {
+                        path: '/admin/cssDemo/diskClock',
+                        name: 'diskClock',
+                        component: () => import('../views/admin/cssDemo/diskClock/index.vue'),
+                        meta: {
+                            icon: 'Document@ep',
+                            iconType: 'ep',
+                        }
+                    },
+                    {
+                        path: '/admin/cssDemo/digitalClock',
+                        name: 'digitalClock',
+                        component: () => import('../views/admin/cssDemo/digitalClock/index.vue'),
                         meta: {
                             icon: 'Document@ep',
                             iconType: 'ep',
