@@ -11,6 +11,13 @@
     &.rtl {
       right: 10px;
     }
+    &.btt {
+      height: calc(100% - 116px);
+      width: calc(100% - 20px);
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+    }
     .el-drawer__header {
       padding: 15px 20px 14px;
       margin-bottom: 0;

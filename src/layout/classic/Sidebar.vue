@@ -8,7 +8,8 @@ import { useLayoutStore } from '@/stores/layout'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import SubMenu from './SubMenu.vue'
-import { useRoute } from 'vue-router'
+import HeaderLogo from './HeaderLogo.vue'
+import { useRoute, type RouteRecordRaw } from 'vue-router'
 
 const layoutStore = useLayoutStore()
 const { isCollapse } = storeToRefs(layoutStore)
@@ -38,7 +39,7 @@ export default {
 <template>
   <div class="dark:classic-sidebar-dark classic-sidebar">
     <h5 class="logo-wrapper">
-      <div class="logo">SF</div>
+      <HeaderLogo />
       <Transition name="fade-left">
         <div class="logo-text" v-show="!isCollapse">Shadowfiend</div>
       </Transition>
@@ -48,16 +49,18 @@ export default {
       active-text-color="#ffd04b"
       background-color="#545c64"
       text-color="#fff" -->
-    <el-menu
-      :default-active="activeMenu"
-      background-color="#060d37"
-      text-color="#fff"
-      :collapse="isCollapse"
-      @open="handleOpen"
-      @close="handleClose"
-    >
-      <SubMenu v-for="route in menus" :key="route.path" :item="route" />
-    </el-menu>
+    <div class="menu-box">
+      <el-menu
+        :default-active="activeMenu"
+        background-color="#060d37"
+        text-color="#fff"
+        :collapse="isCollapse"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <SubMenu v-for="route in menus" :key="route.path" :item="route as RouteRecordRaw" />
+      </el-menu>
+    </div>
 
 
     <div class="collapse-icon-wrapper">
@@ -76,7 +79,7 @@ export default {
 }
 .classic-sidebar {
   // width: 100%;
-  height: 100%;
+  // height: 100%;
   min-height: 100vh;
   background-color: #060d37;
   // overflow: auto;
@@ -89,21 +92,14 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.logo {
-  width: 40px;
-  height: 40px;
-  background-color: #2e9763;
-  font-size: 34px;
-  line-height: 38px;
-  border-radius: 6px;
-  font-family: Impact;
-  text-align: center;
-  z-index: 1;
-}
 .logo-text {
   font-size: 22px;
   margin-left: 8px;
   color: #fff;
+}
+.menu-box {
+  height: calc(100vh - 128px);
+  overflow-y: auto;
 }
 .el-menu {
   // width: 100%;
@@ -111,16 +107,6 @@ export default {
   overflow: auto;
   border: none;
 }
-// .el-menu .el-menu-item {
-//   height: 40px;
-//   line-height: 40px;
-// }
-// .classic-sidebar {
-//   :deep(.el-sub-menu__title) {
-  //  height: 40px;
-  //  line-height: 40px;
-//   }
-// }
 .collapse-icon-wrapper {
   text-align: right;
   padding: 22px;

@@ -19,6 +19,13 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --vt-scrollbar-light: #f1f1f1;
+  --vt-scrollbar-dark: #2c2c2c;
+  --vt-scrollbar-thumb-light: #888;
+  --vt-scrollbar-thumb-dark: #555;
+  --vt-scrollbar-hover-light: #555;
+  --vt-scrollbar-hover-dark: #777;
 }
 
 /* semantic color variables for this project */
@@ -34,6 +41,10 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --vt-scrollbar-bg: var(--vt-scrollbar-light);
+  --vt-scrollbar-thumb: var(--vt-scrollbar-thumb-light);
+  --vt-scrollbar-hover: var(--vt-scrollbar-hover-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +58,10 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+
+    --vt-scrollbar-bg: var(--vt-scrollbar-dark);
+    --vt-scrollbar-thumb: var(--vt-scrollbar-thumb-dark);
+    --vt-scrollbar-hover: var(--vt-scrollbar-hover-dark);
   }
 }
 
@@ -103,4 +118,32 @@ a:-webkit-any-link {
   color: inherit;
   cursor: pointer;
   text-decoration: none;
+}
+
+/* 滚动条样式 */
+/* 针对 WebKit 浏览器（Chrome, Safari, Edge） */
+::-webkit-scrollbar {
+  width: 12px; /* 滚动条宽度 */
+  height: 12px; /* 水平滚动条高度 */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vt-scrollbar-bg); /* 滚动条轨道背景 */
+  border-radius: 10px; /* 圆角 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vt-scrollbar-thumb); /* 滚动条滑块颜色 */
+  border-radius: 10px; /* 圆角 */
+  border: 3px solid var(--vt-scrollbar-bg); /* 滑块边框 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vt-scrollbar-hover); /* 鼠标悬停时滑块颜色 */
+}
+
+/* 针对 Firefox 浏览器 */
+* {
+  scrollbar-width: thin; /* 滚动条宽度 */
+  scrollbar-color: var(--vt-scrollbar-thumb) var(--vt-scrollbar-bg); /* 滑块颜色和轨道颜色 */
 }

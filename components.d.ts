@@ -55,6 +55,7 @@ declare module 'vue' {
     ProcessBar: typeof import('./src/components/modules/ProcessBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchInput: typeof import('./src/components/modules/SearchInput.vue')['default']
     SliberBar: typeof import('./src/components/modules/SliberBar.vue')['default']
     SliderBar: typeof import('./src/components/modules/SliderBar.vue')['default']
     SvgIcon: typeof import('./src/components/global/SvgIcon/index.vue')['default']

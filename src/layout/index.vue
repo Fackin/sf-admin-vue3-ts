@@ -4,6 +4,7 @@ import ClassicHeader from './classic/Header.vue'
 import { TagsBar, SettingDrawer } from './components'
 import { FOOTER_CONTENT } from '@/config/index'
 import MainFullScreen from './components/TagsBar/FullScreen.vue'
+import MobileMenu from './classic/MobileMenu.vue'
 
 export default {
   name: 'Layout',
@@ -13,6 +14,7 @@ export default {
     TagsBar,
     SettingDrawer,
     MainFullScreen,
+    MobileMenu,
   }
 }
 </script>
@@ -21,10 +23,11 @@ import { ref } from 'vue'
 import { toggleFullscreen } from './composables/index'
 const mainRef = ref()
 const { isFullscreen } = toggleFullscreen(mainRef)
+
 </script>
 <template>
     <div class="layout">
-        <aside>
+        <aside class="md-block">
             <Sidebar />
         </aside>
         <main>
@@ -45,6 +48,9 @@ const { isFullscreen } = toggleFullscreen(mainRef)
                 </div>
                 <el-backtop target=".app-main" />
                 <div class="footer">{{ FOOTER_CONTENT }}</div>
+                <div class="md-hidden">
+                    <MobileMenu />
+                </div>
             </main>
         </main>
     </div>

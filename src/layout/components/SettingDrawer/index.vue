@@ -13,7 +13,7 @@ bus.on((_show) => visible.value = !!_show)
 
 <template>
 
-  <el-drawer v-model="visible" :show-close="false" :with-header="false">
+  <el-drawer v-model="visible" :show-close="false" :with-header="false" custom-class="setting-drawer" style="min-width: 300px">
     <template #header="{ close, titleId, titleClass }">
       <h4 :id="titleId" :class="titleClass">{{ $t('setting.settings') }}</h4>
       <el-button type="text" @click="close"><el-icon class="el-icon--left"><CircleCloseFilled /></el-icon></el-button>
@@ -27,4 +27,8 @@ bus.on((_show) => visible.value = !!_show)
   </el-drawer>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.setting-drawer {
+  min-width: 300px;
+}
+</style>
